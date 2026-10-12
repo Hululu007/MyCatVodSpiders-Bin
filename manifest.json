@@ -1,10 +1,12 @@
 {
   "//": "运行时二进制清单。App 启动时按设备 ABI 选取所需文件，先本地校验 size + sha256，不一致则从 sources 依次尝试下载。",
   "version": 1,
-  "//sources": "多源轮询，按顺序尝试；第一个失败自动换下一个。仓库名待定，确认后替换。",
+  "//sources": "多级下载源，按顺序尝试，前一个失败自动换下一个。★实测 raw 与 jsDelivr 在国内经常 TLS 握手失败，所以必须有 ghproxy / GitHub API 兜底。",
   "sources": [
     "https://raw.githubusercontent.com/Hululu007/MyCatVodSpiders-Bin/main/",
-    "https://cdn.jsdelivr.net/gh/Hululu007/MyCatVodSpiders-Bin@main/"
+    "https://cdn.jsdelivr.net/gh/Hululu007/MyCatVodSpiders-Bin@main/",
+    "https://ghproxy.net/https://raw.githubusercontent.com/Hululu007/MyCatVodSpiders-Bin/main/",
+    "https://api.github.com/repos/Hululu007/MyCatVodSpiders-Bin/contents/?ref=main (需 Accept: application/vnd.github.raw)"
   ],
   "//luserver_fallback": "libluserver.so 的第三方备用源（工程原有下载地址），公开仓库失败时使用。",
   "luserver_fallback": "http://android.lushunming.qzz.io/json/",
