@@ -1,0 +1,69 @@
+{
+  "//": "运行时二进制清单。App 启动时按设备 ABI 选取所需文件，先本地校验 size + sha256，不一致则从 sources 依次尝试下载。",
+  "version": 1,
+  "//sources": "多源轮询，按顺序尝试；第一个失败自动换下一个。仓库名待定，确认后替换。",
+  "sources": [
+    "https://raw.githubusercontent.com/Hululu007/MyCatVodSpiders-Bin/main/",
+    "https://cdn.jsdelivr.net/gh/Hululu007/MyCatVodSpiders-Bin@main/"
+  ],
+  "//luserver_fallback": "libluserver.so 的第三方备用源（工程原有下载地址），公开仓库失败时使用。",
+  "luserver_fallback": "http://android.lushunming.qzz.io/json/",
+  "files": [
+    {
+      "path": "arm64-v8a/libgoproxy.so",
+      "size": 6791136,
+      "sha256": "0dfe83e07c69ae9b0a4a729d4adf2fd13f268d6e953bac765d6e1c7957f24e24",
+      "abi": "arm64-v8a",
+      "kind": "goproxy-so",
+      "origin": "self",
+      "note": "来自 D:/code/GoProxyAndroid（build_so.sh 产出）"
+    },
+    {
+      "path": "armeabi-v7a/libgoproxy.so",
+      "size": 6740168,
+      "sha256": "5ef424184b4f2dcd349dd6e960526212a53c62103c88f4d816c37175273f71a6",
+      "abi": "armeabi-v7a",
+      "kind": "goproxy-so",
+      "origin": "self",
+      "note": "来自 D:/code/GoProxyAndroid（build_so.sh 产出）"
+    },
+    {
+      "path": "goProxy-arm64",
+      "size": 6566184,
+      "sha256": "378abe0684311ecc304ba649372c408010731e37dff178dc85ae65daa219b6a5",
+      "abi": "arm64-v8a",
+      "kind": "goproxy-bin",
+      "origin": "self",
+      "note": "来自 D:/code/GoProxyAndroid（APP_NAME=goProxy），JNI 不可用时的可执行兜底"
+    },
+    {
+      "path": "goProxy-arm",
+      "size": 6575504,
+      "sha256": "0780013f36c0639d859f555f5c248e26f37bbb52bd582ae891281f2a2a0536c5",
+      "abi": "armeabi-v7a",
+      "kind": "goproxy-bin",
+      "origin": "self",
+      "note": "来自 D:/code/GoProxyAndroid（APP_NAME=goProxy），JNI 不可用时的可执行兜底"
+    },
+    {
+      "path": "arm64-v8a/libluserver.so",
+      "size": 6833432,
+      "sha256": "63a24dabff3972b031c05346b2096571ca19678d575c62710777aec1755f4abb",
+      "abi": "arm64-v8a",
+      "kind": "luserver-so",
+      "origin": "third-party",
+      "fallback": "http://android.lushunming.qzz.io/json/server-android-arm64.so",
+      "note": "第三方二进制，公开仓库为主源、qzz.io 为备用源"
+    },
+    {
+      "path": "armeabi-v7a/libluserver.so",
+      "size": 6750304,
+      "sha256": "14cffd1e4cdf1ef286379790d0c5cc81ee040836cd208e564aa6c4347f2d4c63",
+      "abi": "armeabi-v7a",
+      "kind": "luserver-so",
+      "origin": "third-party",
+      "fallback": "http://android.lushunming.qzz.io/json/server-android-arm.so",
+      "note": "第三方二进制，公开仓库为主源、qzz.io 为备用源"
+    }
+  ]
+}
