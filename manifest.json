@@ -1,12 +1,14 @@
 {
   "//": "运行时二进制清单。App 启动时按设备 ABI 选取所需文件，先本地校验 size + sha256，不一致则从 sources 依次尝试下载。",
   "version": 1,
-  "//sources": "多级下载源，按顺序尝试，前一个失败自动换下一个。★实测 raw 与 jsDelivr 在国内经常 TLS 握手失败，所以必须有 ghproxy / GitHub API 兜底。",
+  "//sources": "多级下载源，按顺序尝试，前一个失败自动换下一个。★★★实测（国内直连，2026-10-12，下载 6.57MB 文件）：gcore.jsdelivr.net 最快（12s/550KB/s）但会间歇性被 TLS 阻断；ghproxy.net 最稳（40~80KB/s）；api.github.com 最可靠（35KB/s，需 Accept: application/vnd.github.raw 才能拉 >1MB 大文件）；fastly.jsdelivr.net 备用；cdn.jsdelivr.net 与 raw.githubusercontent.com 国内 TLS 被重置。排序原则：快的优先，但国内不通的必须放最后（每撞一个连不上的源白等 15s connectTimeout）。",
   "sources": [
-    "https://raw.githubusercontent.com/Hululu007/MyCatVodSpiders-Bin/main/",
-    "https://cdn.jsdelivr.net/gh/Hululu007/MyCatVodSpiders-Bin@main/",
+    "https://gcore.jsdelivr.net/gh/Hululu007/MyCatVodSpiders-Bin@main/",
     "https://ghproxy.net/https://raw.githubusercontent.com/Hululu007/MyCatVodSpiders-Bin/main/",
-    "https://api.github.com/repos/Hululu007/MyCatVodSpiders-Bin/contents/?ref=main (需 Accept: application/vnd.github.raw)"
+    "https://api.github.com/repos/Hululu007/MyCatVodSpiders-Bin/contents/?ref=main (需 Accept: application/vnd.github.raw)",
+    "https://fastly.jsdelivr.net/gh/Hululu007/MyCatVodSpiders-Bin@main/",
+    "https://cdn.jsdelivr.net/gh/Hululu007/MyCatVodSpiders-Bin@main/",
+    "https://raw.githubusercontent.com/Hululu007/MyCatVodSpiders-Bin/main/"
   ],
   "//luserver_fallback": "libluserver.so 的第三方备用源（工程原有下载地址），公开仓库失败时使用。",
   "luserver_fallback": "http://android.lushunming.qzz.io/json/",
